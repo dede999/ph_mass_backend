@@ -1,10 +1,13 @@
 import dotenv from "dotenv";
+import helmet from "helmet";
 import express, { Request, Response } from "express";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
+
+app.use(helmet());
 
 app.get("/", (req: Request, resp: Response) => {
   resp.send({ request: req.body, message: `Hello World at ${new Date()}` });
