@@ -7,7 +7,7 @@ const app = express()
 const port = process.env.PORT
 
 app.get('/', (req: Request, resp: Response) => {
-    resp.send({ request: req.body, message: `Hello World at ${new Date().getUTCDate()}` })
+    resp.send({ request: req.body, message: `Hello World at ${new Date()}` })
 })
 
 app.listen(port, () => {
