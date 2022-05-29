@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id                String   @id @default(cuid())
   email             String
   encryptedPassword String   @map("encrypted_password")
