@@ -26,5 +26,5 @@ update_docker_image:
   before_script:
     - docker login -u "${CI_REGISTER_USERNAME}" -p "${CI_REGISTER_PASSWORD}"  "${CI_REGISTER}"
   script:
-    - docker image -t "${CI_REGISTER}/p9084/backend" .
+    - docker build -t "${CI_REGISTER}/p9084/backend" .
     - docker push "${CI_REGISTER}/p9084/backend"
