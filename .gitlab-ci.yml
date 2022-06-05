@@ -15,16 +15,3 @@ deploy_to_heroku:
     - master
   script:
     - dpl --provider=heroku --app=${HEROKU_APP_NAME} --api-key=${HEROKU_APP_KEY}
-
-update_docker_image:
-  stage: deploy
-  services:
-    - docker:20.10.0-dind
-  image: docker:20.10
-  only:
-    - master
-  before_script:
-    - docker login -u "${CI_REGISTER_USERNAME}" -p "${CI_REGISTER_PASSWORD}"  "${CI_REGISTER}"
-  script:
-    - docker image -t "${CI_REGISTER}/p9084/backend" .
-    - docker push "${CI_REGISTER}/p9084/backend"
