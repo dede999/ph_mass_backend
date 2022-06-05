@@ -8,12 +8,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT;
 
+app.use(cors());
 app.use(helmet());
-app.use(cors({
-  origin: ["http://localhost:8080", "https://frontend-ph-missas.vercel.app"],
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
 
 app.get("/", (req: Request, resp: Response) => {
   resp.send({ request: req.body, message: `Hello World at ${new Date()}` });
