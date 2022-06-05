@@ -18,9 +18,13 @@ deploy_to_heroku:
 
 update_docker_image:
   stage: deploy
+  services:
+    - docker:20.10.0-dind
+  image: docker:20.10
   only:
     - master
-  script:
+  before_script:
     - docker login ${CI_REGISTER} -u ${CI_REGISTER_USERNAME} -p ${CI_REGISTER_PASSWORD}
-    - docker build -t ${CI_REGISTER}/p9084/backend .
+  script:
+    - docker image -t ${CI_REGISTER}/p9084/backend .
     - docker push ${CI_REGISTER}/p9084/backend
